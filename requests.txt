@@ -1,0 +1,74 @@
+1. Создание просьбы
+POST /task
+{
+	"method": "GET",
+	"uri": "https://google.com"
+}
+
+Пример ответа: 
+{
+  "id": "dfaeb3cd-fd65-46d7-906b-17a385cbb701",
+  "status": 200,
+  "content_length": 14281,
+  "headers": {
+    "Cache-Control": "private, max-age=0",
+    "Content-Type": "text/html; charset=ISO-8859-1",
+    "Date": "Thu, 29 Nov 2018 20:08:27 GMT",
+    "Expires": "-1",
+    "P3p": "CP=\"This is not a P3P policy! See g.co/p3phelp for more info.\"",
+    "Server": "gws",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Xss-Protection": "1; mode=block"
+  }
+}
+--------------------------------------------------------
+
+2. Поиск просьбы по Id
+GET /task/dfaeb3cd-fd65-46d7-906b-17a385cbb701
+
+Пример ответа:
+{
+  "id": "dfaeb3cd-fd65-46d7-906b-17a385cbb701",
+  "status": 200,
+  "content_length": 14281,
+  "headers": {
+    "Cache-Control": "private, max-age=0",
+    "Content-Type": "text/html; charset=ISO-8859-1",
+    "Date": "Thu, 29 Nov 2018 20:08:27 GMT",
+    "Expires": "-1",
+    "P3p": "CP=\"This is not a P3P policy! See g.co/p3phelp for more info.\"",
+    "Server": "gws",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Xss-Protection": "1; mode=block"
+  }
+}
+
+В случае неудачи возращается 404
+
+--------------------------------------------------------
+
+3. Удаление просьбы
+DELETE /task/dfaeb3cd-fd65-46d7-906b-17a385cbb701
+
+Пример ответа:
+204
+
+--------------------------------------------------------
+
+4. Получение списка просьб
+GET /task?page=1&count=3
+
+Параметры page и count необязательные и используются для пагинации
+Пример ответа:
+[
+  {
+    "id": "b144fe18-2354-4af5-98dd-76ed28b77482",
+    "status": 200,
+    "content_length": 14235,
+    "headers": {
+      "Cache-Control": "private, max-age=0",
+      "Content-Type": "text/html; charset=ISO-8859-1",
+    }
+  }
+]
+--------------------------------------------------------

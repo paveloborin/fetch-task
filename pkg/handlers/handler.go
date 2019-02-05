@@ -4,8 +4,9 @@ import (
 	"encoding/binary"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
+
+	"github.com/rs/zerolog/log"
 
 	"github.com/paveloborin/fetch-task/pkg/cache"
 )
@@ -35,10 +36,11 @@ func writeResponse(w http.ResponseWriter, code int, resp interface{}) {
 	}
 
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	//	len, _ := w.Write(data)
 
-	len := binary.Size(data)
-	w.Header().Set("Content-Length", fmt.Sprintf("%d", len))
+	contentLen := binary.Size(data)
+	w.Header().Set("Content-Length", fmt.Sprintf("%d", contentLen))
 	w.WriteHeader(code)
-	w.Write(data)
+	if _, err = w.Write(data); err != nil {
+		log.Warn().Err(err).Msg("error write response")
+	}
 }

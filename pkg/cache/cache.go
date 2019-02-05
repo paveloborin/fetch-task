@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	"github.com/paveloborin/fetch-task/pkg/model"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 type Storage struct {
@@ -38,12 +38,15 @@ func (s *Storage) Add(task *model.Task) {
 
 func (s *Storage) Delete(id uuid.UUID) bool {
 	s.mx.Lock()
+	defer s.mx.Unlock()
+
 	_, ok := s.data[id]
 	if !ok {
+
 		return false
 	}
 	delete(s.data, id)
-	s.mx.Unlock()
+
 	return true
 }
 

@@ -3,8 +3,7 @@ github.com/paveloborin/fetch-task/cmd/fetchtask.go:24.13,32.2 6 1
 github.com/paveloborin/fetch-task/cmd/fetchtask.go:34.13,39.12 4 0
 github.com/paveloborin/fetch-task/cmd/fetchtask.go:53.2,53.62 1 0
 github.com/paveloborin/fetch-task/cmd/fetchtask.go:57.2,58.54 2 0
-github.com/paveloborin/fetch-task/cmd/fetchtask.go:39.12,43.10 3 0
-github.com/paveloborin/fetch-task/cmd/fetchtask.go:44.26,47.44 3 0
-github.com/paveloborin/fetch-task/cmd/fetchtask.go:47.44,49.5 1 0
+github.com/paveloborin/fetch-task/cmd/fetchtask.go:39.12,48.43 7 0
+github.com/paveloborin/fetch-task/cmd/fetchtask.go:48.43,50.4 1 0
 github.com/paveloborin/fetch-task/cmd/fetchtask.go:53.62,55.3 1 0
 github.com/paveloborin/fetch-task/cmd/fetchtask.go:61.34,71.2 7 1

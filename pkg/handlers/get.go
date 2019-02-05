@@ -1,13 +1,12 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/rs/zerolog/log"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 func (h *Handler) GetOneByIdHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
@@ -49,7 +48,7 @@ func (h *Handler) GetAllHandler(w http.ResponseWriter, r *http.Request, ps httpr
 			return
 		}
 	}
-	fmt.Println(startPage, countTaskOnPage)
+
 	tasks := h.cache.GetAll(startPage, countTaskOnPage)
 	if len(tasks) == 0 {
 		writeResponse(w, http.StatusNotFound, nil)

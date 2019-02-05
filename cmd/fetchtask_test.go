@@ -44,7 +44,7 @@ func TestAPI(t *testing.T) {
 	body, _ := ioutil.ReadAll(rr.Body)
 	task := model.Task{}
 
-	if err := json.Unmarshal(body, &task); err != nil {
+	if err = json.Unmarshal(body, &task); err != nil {
 		t.Errorf("invalid response")
 	}
 

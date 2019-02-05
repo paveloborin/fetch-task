@@ -7,11 +7,12 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/paveloborin/fetch-task/pkg/model"
 	"github.com/rs/zerolog/log"
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 var httpMethods = map[string]bool{
@@ -38,7 +39,7 @@ func (h *Handler) PostHandler(w http.ResponseWriter, r *http.Request, ps httprou
 		URI    string `json:"uri"`
 	}{}
 
-	if err := json.Unmarshal(body, &req); err != nil {
+	if err = json.Unmarshal(body, &req); err != nil {
 		log.Warn().Err(err).Msg("unmarshal body err")
 		writeResponse(w, http.StatusUnprocessableEntity, nil)
 		return
@@ -74,6 +75,7 @@ func (h *Handler) PostHandler(w http.ResponseWriter, r *http.Request, ps httprou
 
 func getURI(uri *url.URL, method string, task *model.Task) error {
 	client := &http.Client{}
+	client.Timeout = 5 * time.Second
 	req, err := http.NewRequest(method, uri.String(), nil)
 	if err != nil {
 		return err
